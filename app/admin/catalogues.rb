@@ -6,7 +6,7 @@ ActiveAdmin.register Catalogue do
   # Uncomment all parameters which should be permitted for assignment
   #
   permit_params :name, :price, :discription, :gst, :total, :category_id, :sub_category_id, pictures: []
-  
+
   form do |f|
 
     f.inputs do
@@ -27,6 +27,7 @@ ActiveAdmin.register Catalogue do
        row :price
        row :discription
        row :gst 
+       row :total 
        row :category 
        row :sub_category 
         row :pictures do |p|
@@ -47,6 +48,7 @@ index do
       column :price
       column :description
       column :gst
+      column :total
       column :category 
       column :sub_category
       column :pictures do |m|
@@ -58,6 +60,7 @@ index do
       end
       actions
  end
+
   #
   # or
   #
