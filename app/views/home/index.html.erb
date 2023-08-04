@@ -1,0 +1,19 @@
+
+<h1>Welcome to Cure easy app</h1>
+<table>                         
+  <tr>                          
+    <th>Services</th>
+  </tr>
+<% @category.each do |data| %>      
+  <tr>
+    
+    <td><a href="<%= "/categories/#{data.id}" %>">
+      <%= data.name%>
+      </a>
+    </td> 
+   </tr>
+   <tr>  
+    <td><%= image_tag(data.image, height: 100, width: 150)%></td>
+   </tr>
+<% end %>                       
+</table>     

@@ -1,0 +1,15 @@
+
+<table>                         
+  <tr>                          
+    <th>Services</th>
+  </tr>
+<% @subcategory.each do |data| %>      
+  <tr>
+    
+    <td><a href="<%= "/categories/#{data.id}" %>">
+      <%= data.name%>
+      </a>
+    </td> 
+   </tr>
+<% end %>                       
+</table>     
