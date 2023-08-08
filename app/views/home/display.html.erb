@@ -1,0 +1,17 @@
+  <table>                         
+  <tr>                          
+    <th>Sub-Category</th>
+  </tr>
+<%@catalouge.each do |data| %>      
+  <tr>
+    
+    <th> <a href="<%= "/discription/#{data.id}"%>">
+      <%= data.name%>
+      </a>
+    </th> 
+   </tr>
+<% end %>                       
+</table>    
+<%= link_to 'Back', 'javascript:history.go(-3);' %>
+
+

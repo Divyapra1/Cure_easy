@@ -1,0 +1,36 @@
+
+<center>
+	<h1>Welcome To Cure Easy App</h1>
+<br>
+	<h2>Book an appointmnet</h2>
+<br><br>
+
+		<div style="margin-right: 1000px; font-size: 20px; margin-top: 5px;"><b>Category</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+		<%=@disc.category.name%></div>
+	
+		<div style="margin-top: 50px; margin-right: 1025px; font-size: 20px;"><b>Sub Category</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+		<%=@disc.sub_category.name%></div>
+
+
+		<div>
+			<%=@disc.discription%> </div>
+		<div style="margin-top: 50px"><b>Price</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <%=@disc.price%></div>
+		<div style="margin-top: 25px"> <b>Gst</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%=@disc.gst%></div>
+		<div style="margin-top: 25px"> <b>Total</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%=@disc.total%></div>
+		<!-- <div style="margin-top: 100px"><button type='button' id="appointment">Book an appointment</button> </div> -->
+		<button id="book_appointment" onclick="postYourAdd()">Book Appointment</button>
+         <div id="show_appointment" style="display: flex; justify-content: center; display: center;"></div>
+		<script>
+			function postYourAdd() {
+			  document.getElementById("show_appointment").innerHTML = "<iframe src=\"/root_path\" height=\"1000\" width=\"1000\" ></iframe>";
+
+		}
+		</script>
+        
+	
+
+
+
+	
+</center><br><br>
+<%= link_to"Back",  :back  %>

@@ -17,6 +17,7 @@ ActiveAdmin.register Catalogue do
     f.input :total
     f.input :category
     f.input :sub_category
+
     f.input :pictures, as: :file, input_html: { multiple: true }
   end
     f.actions

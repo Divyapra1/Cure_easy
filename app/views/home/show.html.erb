@@ -6,10 +6,11 @@
 <% @subcategory.each do |data| %>      
   <tr>
     
-    <td><a href="<%= "/categories/#{data.id}" %>">
+    <td><a href="<%= "/catalouges/#{data.id}" %>">
       <%= data.name%>
       </a>
     </td> 
    </tr>
 <% end %>                       
-</table>     
+</table>   
+<%= link_to"Back",  root_path  %>
