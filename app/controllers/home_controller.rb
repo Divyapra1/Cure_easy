@@ -15,6 +15,6 @@ class HomeController < ApplicationController
     @disc=Catalogue.find(params[:id])  
   end
 
-
+  
     
 end

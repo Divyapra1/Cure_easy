@@ -1,0 +1,10 @@
+<h2>Book appointment</h2>
+<%= form_with model: @appointment1 do |form| %>
+  <div>
+    <h3><%= form.label :Select_date %><br></h3>
+    <%= form.date_field :select_date %>
+    
+  <div style="margin-top:100px; display: flex; justify-content: center;">
+    <%= form.submit %>
+  </div>
+  <%end%>

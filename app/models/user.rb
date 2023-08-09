@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   enum status: [:Service_provider ,:Guest ]
+  has_many :appointments
   after_create :welcome_send
   
   def welcome_send 

@@ -18,14 +18,8 @@
 		<div style="margin-top: 25px"> <b>Gst</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%=@disc.gst%></div>
 		<div style="margin-top: 25px"> <b>Total</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%=@disc.total%></div>
 		<!-- <div style="margin-top: 100px"><button type='button' id="appointment">Book an appointment</button> </div> -->
-		<button id="book_appointment" onclick="postYourAdd()">Book Appointment</button>
-         <div id="show_appointment" style="display: flex; justify-content: center; display: center;"></div>
-		<script>
-			function postYourAdd() {
-			  document.getElementById("show_appointment").innerHTML = "<iframe src=\"/root_path\" height=\"1000\" width=\"1000\" ></iframe>";
-
-		}
-		</script>
+	<a href='/appointments/<%=current_user.id%>'>	<button id="book_appointment" style="margin-top: 150px;">Book Appointment</button></a>
+		
         
 	
 
