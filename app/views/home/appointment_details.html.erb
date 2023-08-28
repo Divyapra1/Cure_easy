@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+  .circular-image {
+    width: 20vw;
+    height: 40vh;
+  }
+  .details-container {
+    display: flex;
+    background-color: ;
+  }
+  .profile-box {
+    margin-right: 20px;
+    margin-left:15% ;
+   
+    border: 1px ;
+    width: 20vw;
+    height: 40vh;
+  }
+/*  .details-box {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-left: 350px;
+    width: 30vw;
+    height: 40vh;
+  }*/
+  
+  .details-box {
+    border: 2px solid #2c3e50;
+    padding: 20px;
+    width: 50%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+  }
+  .details-box h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .details-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  .label {
+    font-weight: bold;
+    width: 200px;
+  }
+  .value {
+    margin-left: 220px;
+  }
+  .btn-block{
+    max-width: 30%;
+    
+  }
+  .button-container{
+    margin-bottom: 10px;
+    
+  }
+</style>
+</head>
+<body style="background-color: #CAD3C8;">
+
+
+
+<div class="details-container" style="margin-top: 8%;">
+  <div class="profile-box">
+    <% r = User.find(@details.user_id) %>
+    <%if r.main_image.attached? %>
+    <%= image_tag r.main_image, class: "circular-image" %>
+     <span style="margin-left: 25% "><%= r.firstname %></span>
+    <% else %>
+     <%= image_tag 'default-avatar.png', class: "circular-image" %>
+     <span style="margin-left: 25% "><%= r.firstname %></span>
+
+
+    <%end%>
+    
+  </div>
+
+ <div class="details-box">
+  <h3 style="margin-left: 25%;">Patient Details</h3>
+  <div class="details-item">
+    <span class="label">Date of appointment</span>
+    <span class="value"><%=@details.select_date%></span>
+  </div>
+  <% time = @details.select_time.strftime('%H:%M:%S') %>
+  <div class="details-item">
+    <span class="label">Time of appointment</span>
+    <span class="value"><%= time %> IST</span>
+  </div>
+  <% x = Catalogue.find(@details.catalogue_id) %>
+  <div class="details-item">
+    <span class="label">Catalogue</span>
+    <span class="value"><%= x.name %></span>
+  </div>
+  <div class="details-item">
+    <span class="label">Status</span>
+    <span class="value"><%=@details.status%></span>
+  </div>
+  <div class="details-item">
+    <span class="label">Whatsapp Number</span>
+    <span class="value"><%= r.whatsapp_no %></span>
+  </div>
+  <div class="details-item">
+    <span class="label">Age</span>
+    <span class="value"><%= r.age %></span>
+  </div>
+  <div>
+    <div class="button-container">
+          <%= button_to "Rescheduled", reschedule_appointment_path(@details.id), method: :get, class: "btn btn-secondary btn-block" %>
+    </div>
+    <div class="button-container">
+          <%= button_to "check In", check_in_path(@details.id), method: :get, class: "btn btn-secondary btn-block" %>
+    </div>
+
+
+    
+
+  </div>
+</div>
+
+
+</body>
+</html>

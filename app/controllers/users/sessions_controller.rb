@@ -5,17 +5,25 @@ class Users::SessionsController < Devise::SessionsController
 
   # Override the method to redirect users based on status after sign up
   def create
-     super
-     resource=User.find_by(email: params[:user][:email])
-    if resource.status == 'Guest'
-       root_path
-    elsif resource.status == 'Service_provider'
-      other_page_path # Replace 'other_page_path' with the actual path you want to redirect to
-    else
-      # Add a default path here if needed
-     root_path
+  super do |resource|
+      if resource.persisted?
+        if resource.status == 'Guest'
+          redirect_to root_path and return
+        elsif resource.status == 'Service_provider'
+          redirect_to show_appointments_path(resource.id) and return
+        else
+          render :new and return
+        end
+      end
     end
-  end
+end
+
+    # def destroy 
+    #   super
+    #   @resource=User.find(id: params[:id])
+    #   @resource.destroy
+    #   redirect_to root_path, status: :see_other
+    # end
 
   # GET /resource/sign_in
   # def new

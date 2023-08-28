@@ -63,3 +63,9 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise', '~>4.7.3'
 gem 'activeadmin'
+
+gem "twilio-ruby"
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'arctic_admin'
+gem 'chartkick'
+gem 'cancancan'

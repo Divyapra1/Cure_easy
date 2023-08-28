@@ -1,0 +1,9 @@
+<h1>Hello <%= @user.email %> </h1>
+<h2>Your Appointment has been reschedule</h2>
+
+<p>New date is <%=@schedule.select_date%></p>
+<% time = @schedule.select_time.strftime('%H:%M:%S') %>
+
+<p>New time is <%=time%></p>
+ <%service=Catalogue.find(@schedule.catalogue_id)%>
+ <p>Service name is <%=service.name%></p>

@@ -1,30 +1,97 @@
-
-<center>
-	<h1>Welcome To Cure Easy App</h1>
-<br>
-	<h2>Book an appointmnet</h2>
+<!-- <head>
+	<style type="text/css">
+	   .btn-block{
+	   	max-width: 15%;
+	   	height: 35px;
+	   	margin-top:150px;
+	   }
+	   .box{
+	   	border: 2px solid green;
+	   	margin-top: 45px;
+	   	width: 25%;
+	   }
+	</style>
+</head>	
+<body>
+<#% cat= SubCategory.find(@disc.sub_category_id)%>
+<%#= link_to"Back",  "/catalouges/#{cat.id}"  %>
+	<h2 style="display: flex; justify-content: center;">Book an appointmnet</h2>
 <br><br>
-
-		<div style="margin-right: 1000px; font-size: 20px; margin-top: 5px;"><b>Category</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-		<%=@disc.category.name%></div>
 	
-		<div style="margin-top: 50px; margin-right: 1025px; font-size: 20px;"><b>Sub Category</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-		<%=@disc.sub_category.name%></div>
+		<div style="margin-top: 50px; margin-right: 1025px; font-size: 20px;"><b>Catalogue</b>
+		<%#=@disc.name%></div>
 
 
-		<div>
-			<%=@disc.discription%> </div>
+		<div class="box">
+			<%#=@disc.discription%> </div>
 		<div style="margin-top: 50px"><b>Price</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <%=@disc.price%></div>
 		<div style="margin-top: 25px"> <b>Gst</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%=@disc.gst%></div>
 		<div style="margin-top: 25px"> <b>Total</b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<%=@disc.total%></div>
-		<!-- <div style="margin-top: 100px"><button type='button' id="appointment">Book an appointment</button> </div> -->
-	<a href='/appointments/<%=current_user.id%>'>	<button id="book_appointment" style="margin-top: 150px;">Book Appointment</button></a>
+		 <div style="margin-top: 100px"><button type='button' id="appointment">Book an appointment</button> </div>
+	
+    <%#= button_to "Book Appointment",new_appointment_path(current_user) , method: :get, class: "btn-block" %>
+</body> -->
+
 		
-        
-	
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book an Appointment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
+        .box {
+            border: 2px solid green;
+            padding: 15px;
+            margin-top: 20px;
+        }
 
-	
-</center><br><br>
-<%= link_to"Back",  :back  %>
+        .btn-block {
+            display: block;
+            max-width: 150px;
+            height: 35px;
+            margin-top: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-block:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body style="background-color: #F8EFBA;">
+	  <% cat= SubCategory.find(@disc.sub_category_id)%>
+<%= link_to"Back",  "/catalouges/#{cat.id}"  %>
+    <div class="container">
+      
+        <h2 style="text-align: center;">Book an Appointment</h2>
+
+        <div class="box">
+            <div><b>Catalog:</b> <%= @disc.name %></div>
+            <div><b>Description:</b> <%= @disc.discription %></div>
+            <div><b>Price:</b> <%= @disc.price %></div>
+            <div><b>GST:</b> <%= @disc.gst %></div>
+            <div><b>Total:</b> <%= @disc.total %></div>
+        </div>
+
+        <%= button_to "Book Appointment", new_appointment_path(current_user), method: :get, class: "btn-block" %>
+    </div>
+</body>
+</html>
+       
+

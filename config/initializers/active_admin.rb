@@ -117,7 +117,7 @@ ActiveAdmin.setup do |config|
   # roots for each namespace.
   #
   # Default:
-  # config.root_to = 'dashboard#index'
+   config.root_to = 'appointments#index'
 
   # == Admin Comments
   #
@@ -332,4 +332,10 @@ ActiveAdmin.setup do |config|
   # You can switch to using Webpacker here.
   #
   # config.use_webpacker = true
+  meta_tags_options = { viewport: 'width=device-width, initial-scale=1' }
+config.meta_tags = meta_tags_options
+config.meta_tags_for_logged_out_pages = meta_tags_options
+config.comments_menu = false
+config.authorization_adapter = ActiveAdmin::CanCanAdapter
+config.cancan_ability_class = 'Ability'
 end

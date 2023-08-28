@@ -1,0 +1,38 @@
+<head>
+   <style type="text/css">
+      .box_width{
+         width: 40%;
+         border-radius: 25px;
+         margin-left: 50px;
+      }
+      .link { color: #4b6584 } /* CSS link color (red) */
+.link:hover { color: #16a085; }
+   </style>
+</head>
+<body style="background-color: #F8EFBA;">
+<h1 style="margin-left: 50px; padding-bottom: 25px;">Appointments</h1>
+<% @service_provider.each do |u|%>
+   
+   <div class="border border-success p-2 mb-2 box_width">
+   <a href="/appointment_details/<%=u.id%>" class='link'>
+   	<p><b>Date of appointment-</b> <%=u.select_date%></p> 
+   <% time = u.select_time.strftime('%H:%M:%S') %>
+
+
+   	<p><b>Time of appointment-</b> <%= time %> IST</p>
+      <%x=Catalogue.find(u.catalogue_id)%>
+      <%if x.present?%>
+      <p><b>Catalogue-</b><%=x.name%></p>
+   	<!-- <#%x=User.find(u.service_provider_id)%> -->
+      <%else%>
+          <%next%>
+      <%end%>
+   	<% r=User.find(u.user_id)%>
+   	<p><b>Name-</b><%=r.firstname%></p>
+   	<p><b>Status-<%=u.status%></b></p>
+</a>
+</div>
+
+
+    <%end%>
+ </body>

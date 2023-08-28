@@ -1,0 +1,90 @@
+<html>
+<head>
+	<style>
+		.head{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.circular-image {
+  border-radius: 50%;
+  width: 150px; /* Adjust the size as needed */
+  height: 150px; /* Adjust the size as needed */
+}
+  .custom-button{
+    max-width: 25%;
+    height: 40px;
+    background-color: blue;
+    color: white; 
+  }
+
+	</style>
+</head>
+<body style="background-color: #F8EFBA;">
+<h3 class="head">Edit Profile</h3>
+<hr>
+<% if flash[:success] %>
+    <div class="success-message">
+      <%= flash[:success] %>
+    </div>
+  <% elsif flash[:error] %>
+    <div class="error-message">
+      <%= flash[:error] %>
+    </div>
+  <% end %>
+<%#@user=User.find(current_user.id)%>
+  <div class="appointment-container">
+    <%= form_with model: @user,url: update_user_profile_path(@user),method: :patch do |form| %>
+      <div class="form-field"  style="margin-top: 50px; padding-bottom:5px;">
+       
+      </div>
+     
+      	<div class="profile-image head">
+  <% if @user.main_image.attached? %>
+    <%= image_tag @user.main_image, class: 'circular-image' %>
+  <% else %>
+    <%= image_tag 'default-avatar.png', class: 'circular-image' %>
+  <% end %>
+      </div>
+      <div style="margin-left: 100px;">
+      <div class="form-field" style="margin-top: 20px; padding-bottom:5px;">
+  <b><%= form.label :main_image, 'Profile Image' %></b>
+</div>
+<div>
+  <%= form.file_field :main_image %>
+</div>	
+      <div class="form-field"  style="margin-top: 20px; padding-bottom:5px;">
+       <b> <%= form.label :firstname, 'Full Name' %></b>
+      </div>
+      <div class="form-field" style="width: 550px; align-items: center;">
+        <%= form.text_field :firstname , value: @user.firstname %>
+      </div>
+      <div class="form-field" style="  margin-top: 20px;">
+        <b><%= form.label :whatsapp_no, 'Whatsapp Number' %></b>
+      </div>
+      <div class="form-field" style="width: 550px;">
+        <%= form.text_field :whatsapp_no, value: @user.whatsapp_no %>
+      </div>
+        <div class="form-field" style="margin-top: 20px;">
+        <b><%= form.label :age, 'Age' %></b>
+      </div>
+      <div class="form-field" style="width: 550px;">
+        <%= form.text_field :age, value: @user.age %>
+      </div>
+       <div class="field" style="margin-top: 50px;">
+  <b><%= form.label :gender %><br /></b>
+  <%= form.label :gender, "Male", value: "male" %>
+  <%= form.radio_button :gender, "male", checked: @user.gender == 'male'  %>
+  <%= form.label :gender, "Female", value: "female" %>
+  <%= form.radio_button :gender, "female", checked: @user.gender == 'female' %>
+</div>
+
+
+      <div class="form-field" style="margin-top: 50px;">
+        <%= form.submit value: 'Update profile',class: 'custom-button' %>
+      </div>
+      </div>
+    <% end %>
+  </div>
+</body>
+</html>

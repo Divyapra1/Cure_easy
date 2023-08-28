@@ -1,11 +1,69 @@
-<h2>Sign up</h2>
+<!-- <h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<%#= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%#= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%#= f.label :email %><br />
+    <%#= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+  <br>
+  <div class='field'> 
+   <%#= f.label :status %>
+   <%#= f.select :status, options_for_select(User.statuses.keys.map { |status| [status.humanize, status] }), prompt: 'Select status' %>
+
+  </div>
+   <br>
+
+  <div class="field">
+    <%#= f.label :password %>
+    <#% if @minimum_password_length %>
+    <em>(<%#= @minimum_password_length %> characters minimum)</em>
+    <#% end %><br />
+    <%#= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%#= f.label :password_confirmation %><br />
+    <%#= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%#= f.submit "Sign up" %>
+  </div>
+<#% end %>
+
+<%#= render "devise/shared/links" %>
+ -->
+ <head>
+  <style type="text/css">
+     .btn-custom {
+  width: 50%; /* Make the button wider */
+  background-color: #8B4513; /* Dark brown color */
+  color: white; /* Text color */
+  height: 40px;
+  border-radius: 0;
+  border: none;
+}
+  </style>
+ </head>
+ <body>
+ <section class="vh-100 bg-image"
+  style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+
+              <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "form-control form-control-lg" %>
   </div>
   <br>
   <div class='field'> 
@@ -18,19 +76,30 @@
   <div class="field">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%#= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <%= f.password_field :password, autocomplete: "new-password",class: "form-control form-control-lg" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "form-control form-control-lg" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: 'btn-custom' %>
   </div>
 <% end %>
 
 <%= render "devise/shared/links" %>
+
+               
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>

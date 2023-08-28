@@ -1,0 +1,17 @@
+<h1>Search Results</h1>
+
+<% if @results.present? %>
+  <ul>
+    <% @results.each do |result| %>
+      <li><%= result.name %></li>
+      <%if result.image.present?%>
+     <a href="<%= "/categories/#{result.id}"%>"><li><%=image_tag(result.image, height: 130, width: 220, class: "rounded-pill")%></li></a>
+       <%end%>
+
+
+
+    <% end %>
+  </ul>
+<% else %>
+  <p>No results found.</p>
+<% end %>

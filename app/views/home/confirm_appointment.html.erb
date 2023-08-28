@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+  .circular-image {
+    width: 20vw;
+    height: 40vh;
+  }
+  .details-container {
+    display: flex;
+    background-color: ;
+  }
+  .profile-box {
+    margin-right: 20px;
+    margin-left:15% ;
+   
+    border: 1px ;
+    width: 20vw;
+    height: 40vh;
+  }
+/*  .details-box {
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-left: 350px;
+    width: 30vw;
+    height: 40vh;
+  }*/
+  
+  .details-box {
+    border: 2px solid #2c3e50;
+    padding: 20px;
+    width: 50%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+    font-size: 18px;
+  }
+  .details-box h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  .details-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  .label {
+    font-weight: bold;
+    width: 200px;
+  }
+  .value {
+    margin-left: 220px;
+  }
+  .img{
+    width: 150px;
+    height: 150px;
+  }
+  .btnr{
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 50px;
+
+  }
+</style>
+</head>
+<body style="background-color: #CAD3C8;">
+
+
+
+<div class="details-container" style="margin-top: 8%;">
+ 
+ <div class="details-box">
+  <h3 style="margin-left: 25%;">Patient Details</h3>
+  <div class="details-item">
+    <span class="label">Date of appointment</span>
+    <span class="value"><%=@confirm.select_date%></span>
+  </div>
+  <% time = @confirm.select_time.strftime('%H:%M:%S') %>
+  <div class="details-item">
+    <span class="label">Time of appointment</span>
+    <span class="value"><%= time %> IST</span>
+  </div>
+  <% x = Catalogue.find(@confirm.catalogue_id) %>
+  <div class="details-item">
+    <span class="label">Service</span>
+    <span class="value"><%= x.name %></span>
+  </div>
+   <%r=User.find(@confirm.user_id)%>
+   <div class="details-item">
+    <span class="label">Name</span>
+    <span class="value"><%= r.firstname %></span>
+  </div>
+  <div class="details-item">
+    <span class="label">Whatsapp Number</span>
+    <span class="value"><%= r.whatsapp_no %></span>
+  </div>
+  <div class="details-item">
+    <span class="label">Age</span>
+    <span class="value"><%= r.age %></span>
+  </div>
+  <div class="details-item">
+    <span class="label">Gender</span>
+    <span class="value"><%= r.gender %></span>
+  </div>
+  <div>
+    <% @confirm.picture.each do |p| %>
+  <%= image_tag p ,class: 'img' %>
+<% end %>
+   </div> 
+     <div class="details-item" style="margin-left: 30%;"> 
+          <%= button_to "Complete", complete_appointment_path(@confirm), method: :get, class: "btn btn-secondary btnr" %>
+    
+  </div> 
+</div>
+
+
+</body>
+</html>

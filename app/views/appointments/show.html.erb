@@ -1,0 +1,35 @@
+<head>
+   <style type="text/css">
+      .width{
+         width: 30%;
+          border-radius: 25px;
+      }
+   </style>
+</head>
+<body  style="background-color: #F8EFBA;">
+<h1>Appointment Information</h1>
+  	<% @show.each do |u|%>
+   <div class="border border-success p-2 mb-2 width">
+   	<p><b>Date of appointment-</b> <%=u.select_date%></p> 
+   	<%x=u.select_time%> 
+   	<p><b>Time of appointment-</b> <%=x%></p>
+   	<!-- <#%x=User.find(u.service_provider_id)%> -->
+      <p><b>Status-</b><%=u.status%></p>
+   	<% service_provider_id = u.service_provider_id %>
+    <% user = User.find_by(id: service_provider_id) %>
+   <% if user && user.email.present? %>
+  <p><b>Service Provider:</b> <%= user.email %></p>
+  <% else %>
+  <p><b>Service Provider:</b> Not Assighned</p>
+  <% end %>
+
+
+   	
+
+   </div>
+
+    <%end%>
+
+  </div>
+</div>
+</body>

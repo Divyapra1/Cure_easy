@@ -1,11 +1,17 @@
 ActiveAdmin.register Catalogue do
-
+     menu priority: 6
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
   # Uncomment all parameters which should be permitted for assignment
   #
   permit_params :name, :price, :discription, :gst, :total, :category_id, :sub_category_id, pictures: []
+
+   filter :name
+   filter :price
+   filter :category 
+   filter :sub_category
+
 
   form do |f|
 
@@ -16,6 +22,7 @@ ActiveAdmin.register Catalogue do
     f.input :gst
     f.input :total
     f.input :category
+    #f.input :sub_categoryas, as: :select, collection: category.sub_categories.all.collect { |user| [user.sub_category, user.id] }
     f.input :sub_category
 
     f.input :pictures, as: :file, input_html: { multiple: true }

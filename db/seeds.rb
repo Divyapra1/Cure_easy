@@ -5,4 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+ if Rails.env.development?
+ 	admin_user = AdminUser.first_or_initialize(email: 'admin@example.com')
+    admin_user.password = 'password'
+    admin_user.password_confirmation = 'password'
+    admin_user.save!
+  end
+PrivacyPolicy.create(discription: 'Description is the pattern of narrative development that aims to make vivid a place, object, character, or group. Description is ') if PrivacyPolicy.count.zero?
+About.create(discription: 'About us discription ') if About.count.zero?

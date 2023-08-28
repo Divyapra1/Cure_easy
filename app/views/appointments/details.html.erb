@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .head{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .btnm{
+      max-width: 25%;
+      height: 30px;
+    }
+  </style>
+</head>
+<body>
+<div class="appointment-container">
+  <h1>Patient Details</h1>
+  <%= form_with model: @updated_user,url: create_details_path(@updated_user),method: :patch do |form| %>
+   
+    <div class="form-field" style="margin-top: 50px; padding-bottom:5px;">
+      <b><%= form.label :firstname, 'Full Name' %></b>
+    </div>
+    <div class="form-field" style="width: 550px; align-items: center;">
+      <%= form.text_field :firstname, value: @updated_user.firstname %>
+    </div>
+    <div class="form-field" style="margin-top: 50px;">
+      <b><%= form.label :whatsapp_no, 'Whatsapp Number' %></b>
+    </div>
+    <div class="form-field">
+      <%= form.text_field :whatsapp_no, value: @updated_user.whatsapp_no %>
+    </div>
+    <div class="form-field" style="margin-top: 50px;">
+      <b><%= form.label :age, 'Age' %></b>
+    </div>
+    <div class="form-field">
+      <%= form.text_field :age, value: @updated_user.age  %>
+    </div>
+    <div class="field" style="margin-top: 50px;">
+      <b><%= form.label :gender %><br /></b>
+      <%= form.label :gender, 'Male', value: 'male' %>
+      <%= form.radio_button :gender, 'male', checked: @updated_user.gender == 'male'%>
+      <%= form.label :gender, 'Female', value: 'female' %>
+      <%= form.radio_button :gender, 'female', checked: @updated_user.gender == 'female' %>
+    </div>
+    <div class="form-field" style="margin-top: 50px ; ">
+      <%= form.submit value: 'Confirm Appointment',class: 'btnm' %>
+    </div>
+  <% end %>
+</div>
+</body>
+</html>

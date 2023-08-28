@@ -1,19 +1,28 @@
+<body style="background-color: #F8EFBA;">
+  <div style="display: flex; justify-content: right; ">
+    <form class="d-flex" role="search" action='<%=search_path%>' method="get">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query" >
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+  </div>
+<div>
+<h1 style="font-size: 55px; padding-bottom: 10px; display: flex; justify-content: center;">Welcome to Cure easy app</h1>
+    <!-- <th  style="font-size: 50px; margin-left: 100px;"class="fw-medium" >Categories</th> -->
 
-<h1>Welcome to Cure easy app</h1>
-<table>                         
-  <tr>                          
-    <th>Services</th>
-  </tr>
+<table style="display: flex; justify-content: center; ">                                                   
 <% @category.each do |data| %>      
   <tr>
     
-    <td><a href="<%= "/categories/#{data.id}" %>">
+    <td style="padding-left: 50px;">
       <%= data.name%>
-      </a>
+     
     </td> 
    </tr>
-   <tr>  
-    <td><%= image_tag(data.image, height: 100, width: 150)%></td>
+    <tr>
+    <td><a href="<%= "/categories/#{data.id}" %>"><%= image_tag(data.image, height: 130, width: 220, class: "rounded-pill")%> </a></td>
+
    </tr>
 <% end %>                       
-</table>     
+</table>  
+</div>
+</body>  

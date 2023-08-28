@@ -1,0 +1,25 @@
+<h1>Appointment Information</h1>
+  	<% @confirmed.each do |u|%>
+   <div class="border border-success p-2 mb-2">
+   	<p><b>Date of appointment-</b> <%=u.select_date%></p> 
+      <% time = u.select_time.strftime('%H:%M:%S') %>
+   	<p><b>Time of appointment-</b> <%=time%></p>
+   	<!-- <#%x=User.find(u.service_provider_id)%> -->
+      <p><b>Status-</b><%=u.status%></p>
+   	<% service_provider_id = u.service_provider_id %>
+    <% user = User.find_by(id: service_provider_id) %>
+   <% if user && user.email.present? %>
+  <p><b>Service Provider:</b> <%= user.email %></p>
+  <% else %>
+  <p><b>Service Provider:</b> Not Assighned</p>
+  <% end %>
+
+
+   	
+
+   </div>
+
+    <%end%>
+
+  </div>
+</div>

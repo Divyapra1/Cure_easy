@@ -1,6 +1,7 @@
-  <table>                         
-  <tr>                          
-    <th>Sub-Category</th>
+<!--   <table>                         
+  <tr>      
+  <%x=SubCategory.find(params[:id]) %>                    
+    <th><%=x.name%></th>
   </tr>
 <%@catalouge.each do |data| %>      
   <tr>
@@ -11,7 +12,79 @@
     </th> 
    </tr>
 <% end %>                       
-</table>    
-<%= link_to 'Back', 'javascript:history.go(-3);' %>
+</table>  -->   
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <style type="text/css">
+    body {
+      background-color: #F8EFBA;
+    }
+    .product-box {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 20px;
+
+    }
+    .product-item {
+      width: calc(33.33% - 20px); /* 3 items per row */
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      background-color: #ffff;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 300px;
+
+    }
+    .product-image {
+      height: 230px;
+      width: 320px;
+      object-fit: cover;
+    }
+    .show-image{
+      size: cover;
+    }
+  </style>
+</head>
+<body>
+  <% x =SubCategory.find(params[:id])%>
+  <% cat = Category.find(x.categories.ids).first.id%>
+  
+   <%= link_to 'Back', "/categories/#{cat}" %>
+
+  <h1 style=" display: flex; justify-content: center; color: #27ae60;"><%=x.name%></h1>
+<div class="product-box">
+  <% @catalouge.each_slice(3) do |data_group| %>
+    <% data_group.each do |data| %>
+      <div class="product-item">
+        
+          <a href="<%= "/discription/#{data.id}" %>">
+            <%= data.name %>
+          </a>
+        <br>
+        <div class="show-image">
+        <% if data.pictures.attached? %>
+          <%= image_tag data.pictures, class: 'product-image', alt: 'Product Image' %>
+        <% else %>
+          No image available
+        <% end %>
+      </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+</body>
+</html>
+
+
+<%#= link_to 'Back', %>
 
 

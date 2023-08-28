@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Book Appointment</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .appointment-container {
+      margin-top: 70px; /* Adjusted margin-top value */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border:1px solid blue;
+      width: 40%;
+       /* Removed duplicate margin rule */
+      padding: 20px;
+      background-color: #f8f9fa;
+      
+    }
+    .form-label {
+      font-size: 2em;
+      margin-bottom: 3px;
+    }
+    .form-field {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+    }
+    .form-submit {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+        font-size: 20px; /* Adjust the font size as needed */
+        padding: 10px 20px;
+    }
+    .container{
+      width: 100%;
+      height: 100vh;
+      background: #3c5077;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+    }
+    .btnc{
+      padding: 10px 60px;
+      border: 0;
+      outline: none;
+      cursor: pointer;
+      font-size: 17px;
+      font-weight: 500;
+      border-radius: 30px;
+
+
+    }
+    .popup{
+      width: 400px;
+      background: #7ed6df;
+      border-radius: 6px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%,-50%)scale(0.1);
+       text-align: center;
+      padding: 0 30px 30px;
+      color: black;
+      visibility: hidden;
+      transition: transform 0.4s, top 0.4s;
+    }
+    .open-popup{
+      visibility: visible;
+      top: 50%;
+      transform: translate(-50%,-50%)scale(1);
+
+
+    }
+    
+    .popup  h2{
+      font-size: 38px;
+      font-weight: 500px;
+      margin: 30px 0 10px;
+
+    }
+    .popup button{
+      width: 25%;
+      margin-top: 50px;
+      padding: 10px 0;
+      background: #44bd32;
+      border: 0;
+      cursor: pointer;
+      outline: none;
+      font-size: 18px;
+      border-radius: 4px;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+       }
+     .popup p{
+      margin-top: 15px;
+     }  
+     .button-popup{
+      max-width: 25%;
+      height: 48px;
+      margin-top: 55px;
+     }  
+
+   
+  </style>
+</head>
+<body style="background-color: #dcdde1">
+  <div class="appointment-container">
+    <h1>Rescheduled Appointment</h1>
+    <%= form_with model: @schedule, url: update_schedule_path(@schedule.id), method: :patch do |form| %>
+      <div class="form-label" style="margin-top: 25px;">
+        <%= form.label :select_date, 'Select Date' %>
+      </div>
+      <div class="form-field">
+        <%= form.date_field :select_date %>
+      </div>
+     
+      <!-- <div class="form-field">
+        <%#= form.hidden_field :catalogue_id, value: params[:disc_id]%>
+      </div> -->
+      <div class="form-label" style="margin-top: 25px;">
+        <%= form.label :select_time, 'Select Time' %>
+      </div>
+      <div class="form-field">
+        <%= form.time_field :select_time %>
+      </div>
+      <!-- <button name="Submit" class='btn' onclick="openPopup()">Submit</button> -->
+      <button type="button" class="btn btn-success btnc" onclick="openPopup()">Confirm</button>
+
+      <div>
+        <div class="popup" id="popup">
+          
+          <p>Are you sure you want to reschedule the appointment?</p>
+          
+              <%= form.submit value: 'Ok', class:  "btn btn-primary button-popup "%>
+        <button type="button" class="btn btn-success  "  onclick="closePopup()">Close</button>
+
+         
+
+        </div>
+      </div>  
+      <!-- <div class="form-submit" style="margin-top: 25px ; ">
+        <%#= form.submit value: 'Proceed' %>
+      </div> -->
+    <% end %>
+     
+  </div>
+  <div style="background-color: #f8f9fa; border: 1px solid #ced4da; padding: 15px; margin-bottom: 20px; margin-top: 90px;">
+  <h3 style="margin-bottom: 10px;">Previous Appointment Details</h3>
+  <div class="row">
+    <div class="col-md-4">
+      <span style="font-weight: bold;">Date:</span>
+    </div>
+    <div class="col-md-8">
+      <span><%=@schedule.select_date%></span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <span style="font-weight: bold;">Time:</span>
+    </div>
+    <div class="col-md-8">
+      <% time = @schedule.select_time.strftime('%H:%M:%S') %>
+      <span><%=time%></span>
+    </div>
+     <div class="col-md-4">
+      <span style="font-weight: bold;">Service</span>
+    </div>
+     <div class="col-md-8">
+      <% cat = Catalogue.find(@schedule.catalogue_id) %>
+      <span><%=cat.name%></span>
+    </div>
+  </div>
+</div>
+<div>
+  </div>
+
+<script type="text/javascript">
+  let popup= document.getElementById('popup');
+  function openPopup(){
+   popup.classList.add("open-popup");
+  }
+
+  function closePopup(){
+   popup.classList.remove("open-popup");
+  }
+
+
+  
+</script>      
+</body>
+</html>

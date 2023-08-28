@@ -1,4 +1,5 @@
 ActiveAdmin.register Category do
+  menu priority: 4
 
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
@@ -6,6 +7,10 @@ ActiveAdmin.register Category do
   # Uncomment all parameters which should be permitted for assignment
   #
    permit_params :name, :image
+
+   filter :name,
+   as: :string,
+   label: 'Search by name'
 
    form do |f|
     f.inputs do 
